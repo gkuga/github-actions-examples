@@ -1,0 +1,17 @@
+name: Build Container Image
+on:
+  push:
+    tags:
+    branches:
+jobs:
+  build_image:
+    name: Build Container Image
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ github.ref_name }}
+          echo ${{ github.ref }}
+          echo ${{ github.workflow }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
