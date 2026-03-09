@@ -1,0 +1,17 @@
+name: Setup Git Config
+description: ''
+inputs:
+  org:
+    description: ''
+    required: true
+  token:
+    description: ''
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        git config --global --add url."https://x-access-token:${{ inputs.token }}@github.com/${{ inputs.org }}/".insteadOf "https://github.com/${{ inputs.org }}/"
+        git config --global --add url."https://x-access-token:${{ inputs.token }}@github.com/${{ inputs.org }}/".insteadOf "git@github.com:${{ inputs.org }}/"
+        git config --global --add url."https://x-access-token:${{ inputs.token }}@github.com/${{ inputs.org }}/".insteadOf "ssh://git@github.com/${{ inputs.org }}/"
